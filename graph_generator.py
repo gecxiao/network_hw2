@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 
 fh=open("test.edgelist.txt",'rb')
 G=nx.read_edgelist(fh)
-
+print(G.nodes.data())
+print(G.edges.data())
 
 
 #plt.draw()
