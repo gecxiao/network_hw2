@@ -32,21 +32,19 @@ def bfs_helper(G, s, t):
 
 def ford_fulkerson(G, s, t):
     f = 0  # maxflow number
-    # while bfs_helper(G, s, t):  # if there is a path from s to t in the residual graph
-    path = bfs(G, s)
-    i = 0
-    capacity = float('inf')
-    while path[i] != t:
-        capacity = min(G[path[i]][path[i + 1]]['weight'], capacity)
-        print(capacity)
-        i += 1
-    i = 0
-    while path[i] != t:
-        G[path[i]][path[i + 1]]['weight'] -= capacity
-        G[path[i + 1]][path[i]]['weight'] += capacity
-        i += 1
-        print(G.edges.data())
-    f += capacity
+    while bfs_helper(G, t, s):  # if there is a path from s to t in the residual graph
+        path = bfs(G, s)
+        i = 0
+        capacity = float('inf')
+        while path[i] != t:
+            capacity = min(G[path[i]][path[i + 1]]['weight'], capacity)
+            i += 1
+        i = 0
+        while path[i] != t:
+            G[path[i]][path[i + 1]]['weight'] -= capacity
+            G[path[i + 1]][path[i]]['weight'] += capacity
+            i += 1
+        f += capacity
     return f
 
 fh = open("test.edgelist.txt", 'rb')
@@ -56,7 +54,8 @@ G = nx.read_edgelist(fh, create_using=nx.DiGraph)
 # print(G.nodes)
 # print(bfs(G, '1'))
 # print(G.edges())
-ford_fulkerson(G, '1', '2')
+f=ford_fulkerson(G, '1', '2')
+print(f)
 # plt.draw()
 nx.draw(G)
 
