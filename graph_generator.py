@@ -90,7 +90,7 @@ G = nx.read_edgelist(fh, create_using=nx.DiGraph)
 #f=ford_fulkerson_bfs(G, '3', '4')
 #print(f)
 
-f = ford_fulkerson_dijkstra(G, '3', '4')
+f = ford_fulkerson_dijkstra(G, '1', '4')
 print(f)
 # plt.draw()
 
