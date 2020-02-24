@@ -36,21 +36,19 @@ def ford_fulkerson_bfs(G, s, t):
     for i in range(1, len(path)):
         G.add_edge(path[i], path[i-1], weight=0)
     while bfs_helper(G, s, t):  # if there is a path from s to t in the residual graph
-        path = bfs(G, s)  # [1,2,3,4]
+        path = bfs(G, s)  
         i = 0
-        capacity = float('inf')
+        capacity = float('inf') 
         while path[i] != t:
             capacity = min(G[path[i]][path[i + 1]]['weight'], capacity)
             i += 1
         i = 0
         while path[i] != t:
-            G[path[i]][path[i + 1]]['weight'] -= capacity
-            # G.add_edge(i+1,i, weight = 0)
-            # print(G.edges.data())
-            G[path[i + 1]][path[i]]['weight'] += capacity
+            G[path[i]][path[i + 1]]['weight'] -= capacity  # update residual graph
+            G[path[i + 1]][path[i]]['weight'] += capacity  # update residual graph
             i += 1
-        f += capacity
-        if capacity == 0:
+        f += capacity #update maxflow
+        if capacity == 0: #if there is no flow, break the loop
             break
     return f
 
