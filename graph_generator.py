@@ -33,8 +33,8 @@ def bfs_helper(G, s, t):
 def ford_fulkerson(G, s, t):
     f = 0  # maxflow number
     path = bfs(G, s)
-    for i in range(1, len(path)-1):
-        G.add_edge(str(i+1),str(i), weight = 0, color = G[path[i]][path[i+1]]['color'])
+    for i in range(1, len(path)):
+        G.add_edge(str(i+1),str(i), weight = 0)
     while bfs_helper(G, s, t):  # if there is a path from s to t in the residual graph
         path = bfs(G, s) #[1,2,3,4]
         i = 0
@@ -47,9 +47,10 @@ def ford_fulkerson(G, s, t):
             G[path[i]][path[i + 1]]['weight'] -= capacity
             #G.add_edge(i+1,i, weight = 0)
             #print(G.edges.data())
-            print([path[i+1]])
             G[path[i + 1]][path[i]]['weight'] += capacity
             i += 1
+            print(G.edges.data())
+            print('next')
         f += capacity
     return f
 
@@ -63,6 +64,6 @@ G = nx.read_edgelist(fh, create_using=nx.DiGraph)
 f=ford_fulkerson(G, '1', '2')
 print(f)
 # plt.draw()
-nx.draw(G)
+
 
 # has some issue with creating isolated node.
