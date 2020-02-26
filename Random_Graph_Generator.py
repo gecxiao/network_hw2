@@ -104,3 +104,32 @@ time1 = ford_fulkerson_dijkstra_benchmark(G, 1, 2)
 time2 = ford_fulkerson_bfs_benchmark(G,1,2)
 print(time1)
 print(time2)
+
+# not finished
+complete_graph_benchmark = []
+barbell_graph_benchmark = []
+cycle_graph_benchmark = []
+star_graph_benchmark = []
+
+for n in range(10, 1001, 10):
+    G = gen_complete_graph(n)
+    time1 = ford_fulkerson_dijkstra_benchmark(G, 1, 2)
+    time2 = ford_fulkerson_bfs_benchmark(G,1,2)
+    complete_graph_benchmark.append((time1,time2))
+    
+    G1 = gen_barbell_graph(n)
+    time1 = ford_fulkerson_dijkstra_benchmark(G1, 1, 2)
+    time2 = ford_fulkerson_bfs_benchmark(G1,1,2)
+    barbell_graph_benchmark.append((time1,time2))
+    
+    G2 = gen_cycle_graph(n)
+    time1 = ford_fulkerson_dijkstra_benchmark(G2, 1, 2)
+    time2 = ford_fulkerson_bfs_benchmark(G2,1,2)
+    cycle_graph_benchmark.append((time1,time2))
+    
+    G3 = gen_star_graph(n)
+    time1 = ford_fulkerson_dijkstra_benchmark(G3, 1, 2)
+    time2 = ford_fulkerson_bfs_benchmark(G3,1,2)
+    star_graph_benchmark.append((time1,time2))
+
+#print(complete_graph_benchmark)
