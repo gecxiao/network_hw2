@@ -1,7 +1,7 @@
 import networkx as nx
 import random
-import matplotlib.pyplot as plt
-from graph_generator import *
+#import matplotlib.pyplot as plt
+#from graph_generator import *
 
 def gen_complete_graph(n):
     G1 = nx.complete_graph(n)
@@ -59,10 +59,11 @@ def gen_cycle_graph(n):
 #for (u, v) in G32.edges():
 #    G32.edges[u, v]['weight'] = random.randint(0, 20)
 #print (G32.edges.data())
-
-#G4 = nx.binomial_tree(8)
-#for (u, v) in G4.edges():
-#    G4.edges[u, v]['weight'] = random.randint(0, 20)
+def gen_binomial_tree(n,m):  
+    G4 = nx.balanced_tree(n,m)
+    for (u, v) in G4.edges():
+        G4.edges[u, v]['weight'] = random.randint(0, 20)
+    return G4
 ##print (G4.edges.data())
 ##nx.draw(G4)
 ##plt.show()
@@ -96,7 +97,8 @@ def gen_star_graph(n):
 #    G52.edges[u, v]['weight'] = random.randint(0, 20)
 ##print (G52.edges.data())
 
-G = gen_complete_graph(1000)
+G = gen_binomial_tree(5,10)
+#nx.draw(G)
 #time1 = ford_fulkerson_dijkstra(G, 1, 2)
 time1 = ford_fulkerson_dijkstra_benchmark(G, 1, 2)
 time2 = ford_fulkerson_bfs_benchmark(G,1,2)
