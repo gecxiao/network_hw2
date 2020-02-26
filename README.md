@@ -21,6 +21,16 @@ We assume '1' as the source and '2' as the sink. Call the function and print it 
 f=bfs(G, '1')
 print(f)
 ```
+Or if you want to see maxflow with BFS:
+```
+f=ford_fulkerson_bfs(G, '1', '2')
+print(f)
+```
+Similarly, for the maxflow with dijkastra:
+```
+f=ford_fulkerson_dijkstra(G, '1', '2')
+print(f)
+```
 
 ## Benchmark result
 In the run time png folder, we included 8 figures with 4 different graphs: complete graph, star graph, barbell graph, and cycle graph.
