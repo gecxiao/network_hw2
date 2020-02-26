@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 import networkx as nx
+import time
+
 
 
 # from networkx.algorithms.flow import preflow_push
@@ -31,14 +33,15 @@ def bfs_helper(G, s, t):
 
 
 def ford_fulkerson_bfs(G, s, t):
+    t1 = time.perf_counter()
     f = 0  # maxflow number
     path = bfs(G, s)
     for i in range(1, len(path)):
         G.add_edge(path[i], path[i-1], weight=0)
     while bfs_helper(G, s, t):  # if there is a path from s to t in the residual graph
-        path = bfs(G, s)  
+        path = bfs(G, s)
         i = 0
-        capacity = float('inf') 
+        capacity = float('inf')
         while path[i] != t:
             capacity = min(G[path[i]][path[i + 1]]['weight'], capacity)
             i += 1
@@ -50,10 +53,13 @@ def ford_fulkerson_bfs(G, s, t):
         f += capacity #update maxflow
         if capacity == 0: #if there is no flow, break the loop
             break
+    t2 = time.perf_counter()
+    print (f"Fuld_Fulkerson+BFS uses {t2 - t1:0.4f} seconds")
     return f
 
 
 def ford_fulkerson_dijkstra(G, s, t):
+    t1 = time.perf_counter()
     f = 0  # maxflow number
     path = nx.dijkstra_path(G, s, t)
     for i in range(1, len(path)):
@@ -75,6 +81,8 @@ def ford_fulkerson_dijkstra(G, s, t):
         f += capacity
         if capacity == 0:
             break
+    t2 = time.perf_counter()
+    print (f"Fuld_Fulkerson+Dijkstra uses {t2 - t1:0.4f} seconds")
     return f
 
 
