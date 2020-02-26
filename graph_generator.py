@@ -174,7 +174,7 @@ dijkastra_time_list = []
 bfs_time_list = []
 size_list = []
 for i in range(100, 1000, 100):
-    G = gen_complete_graph(i)
+    G = gen_star_graph(i)
 #nx.draw(G)
 #time1 = ford_fulkerson_dijkstra(G, 1, 2)
     time_dijkastra = ford_fulkerson_dijkstra_benchmark(G, 1, 2)
@@ -193,7 +193,7 @@ plt.legend()
 
 plt.xlabel('input size')
 plt.ylabel('time')
-plt.title('Complete graph 1')
+plt.title('star graph 2')
 plt.show()
 print(dijkastra_time_list)
 print(bfs_time_list)
