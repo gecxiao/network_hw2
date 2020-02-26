@@ -34,7 +34,7 @@ print(f)
 
 ## Benchmark result
 In the run time png folder, there is a pdf file named Benchmarking Analysis that includes 8 figures with 4 different graphs: complete graph, star graph, barbell graph, and cycle graph.
-The x-axis is the input size, and the y axis is the running time for two algorithms. The runtime of the maxflow algorithm with bfs and dijkstra varies with different graphs. According to the generated results, the runtime of the maxflow algorithm with bfs sometimes exceeds the one with dijkstra but sometimes don't. But under all the other graphs (i.e. barbell, cycle, star graphs), maxflow algorithm implemented with dijkstra typically runs faster than the one with bfs.
+The x-axis is the input size, and the y axis is the running time for two algorithms. The runtime of the maxflow algorithm with bfs and dijkstra varies with different graphs. According to the generated results, the runtime of the maxflow algorithm with bfs sometimes exceeds the one with dijkstra but sometimes don't. That's probably because complete graph is more complicated and we also assign random weights to nodes in graphs, which will affect the performance of dijkstra as seen by the graph that the runtime of algorithm with dijkstra tends to be unstable. But under all the other graphs (i.e. barbell, cycle, star graphs), maxflow algorithm implemented with dijkstra typically runs faster than the one with bfs.
 The more detailed data can be found in the ```running time.xlsx``` file.
 ## Authors
 
